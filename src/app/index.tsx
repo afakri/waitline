@@ -16,25 +16,31 @@ import { HomePage } from './pages/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 import LoginPage from './pages/LoginPage';
+import QueuePage from './pages/QueuesPage';
+import QueueBoard from './pages/QueueBoard';
+import { CssVarsProvider, CssBaseline, Box } from '@mui/joy';
 
 export function App() {
   const { i18n } = useTranslation();
   return (
-    <BrowserRouter>
-      <Helmet
-        titleTemplate="%s - React Boilerplate"
-        defaultTitle="React Boilerplate"
-        htmlAttributes={{ lang: i18n.language }}
-      >
-        <meta name="description" content="A React Boilerplate application" />
-      </Helmet>
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      <GlobalStyle />
-    </BrowserRouter>
+    <CssVarsProvider disableTransitionOnChange>
+      <CssBaseline />
+      <BrowserRouter>
+        <Helmet
+          titleTemplate="%s - React Boilerplate"
+          defaultTitle="React Boilerplate"
+          htmlAttributes={{ lang: i18n.language }}
+        >
+          <meta name="description" content="A React Boilerplate application" />
+        </Helmet>
+        <Routes>
+          <Route path="/queues" element={<QueuePage />} />
+          <Route path="/board" element={<QueueBoard />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        <GlobalStyle />
+      </BrowserRouter>
+    </CssVarsProvider>
   );
 }

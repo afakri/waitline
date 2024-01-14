@@ -35,9 +35,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <HelmetProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <App />
     </HelmetProvider>
   </Provider>,
 );
