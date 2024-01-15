@@ -13,8 +13,11 @@ import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 
 import Board from './components/Board';
 import SideBar from '../../components/SideBar/Sidebar';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function QueueBoard() {
+  const { isAuthenticated } = useAuth0();
+  console.log(isAuthenticated, 'sdsdfsdfsdf');
   return (
     <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
       <SideBar />

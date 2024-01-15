@@ -8,20 +8,24 @@
 
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 import { GlobalStyle } from 'styles/global-styles';
-
+import { Auth0Provider } from '@auth0/auth0-react';
 import { HomePage } from './pages/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
-import LoginPage from './pages/LoginPage';
 import QueuePage from './pages/QueuesPage';
 import QueueBoard from './pages/QueueBoard';
 import { CssVarsProvider, CssBaseline, Box } from '@mui/joy';
+import { Auth0ProviderWithNavigate } from './components/Authentication/Auth0ProviderWithNavigate';
+import { AuthenticationGuard } from './components/Authentication/AuthenticationGuard';
+import Sidebar from './components/SideBar/Sidebar';
+import { CallBackPage } from './pages/CallBackPage';
 
 export function App() {
   const { i18n } = useTranslation();
+
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
@@ -33,12 +37,21 @@ export function App() {
         >
           <meta name="description" content="A React Boilerplate application" />
         </Helmet>
-        <Routes>
-          <Route path="/queues" element={<QueuePage />} />
-          <Route path="/board" element={<QueueBoard />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        <Auth0ProviderWithNavigate>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/queues"
+              element={<AuthenticationGuard component={QueuePage} />}
+            />
+            <Route
+              path="/board"
+              element={<AuthenticationGuard component={QueueBoard} />}
+            />
+            <Route path="/callback" element={<CallBackPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Auth0ProviderWithNavigate>
         <GlobalStyle />
       </BrowserRouter>
     </CssVarsProvider>
