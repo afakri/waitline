@@ -5,13 +5,14 @@ import Box from '@mui/joy/Box';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
-
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 import OrderTable from './components/OrderTable';
 import OrderList from './components/OrderList';
 import SideBar from '../../components/SideBar/Sidebar';
+import { Button } from '@mui/joy';
 
 export default function QueuePage() {
   return (
@@ -51,15 +52,6 @@ export default function QueuePage() {
             >
               <HomeRoundedIcon />
             </Link>
-            <Link
-              underline="hover"
-              color="neutral"
-              href="#some-link"
-              fontSize={12}
-              fontWeight={500}
-            >
-              Dashboard
-            </Link>
             <Typography color="primary" fontWeight={500} fontSize={12}>
               Queues
             </Typography>
@@ -79,6 +71,13 @@ export default function QueuePage() {
           <Typography level="h2" component="h1">
             Queues
           </Typography>
+          <Button
+            color="primary"
+            startDecorator={<AddCircleOutlineIcon />}
+            size="sm"
+          >
+            Add Queue
+          </Button>
         </Box>
         <OrderTable />
         <OrderList />

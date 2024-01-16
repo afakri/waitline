@@ -62,7 +62,7 @@ export default function QueueBoard() {
               fontSize={12}
               fontWeight={500}
             >
-              Dashboard
+              Queues
             </Link>
             <Typography color="primary" fontWeight={500} fontSize={12}>
               Board

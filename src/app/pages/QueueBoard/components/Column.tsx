@@ -1,18 +1,18 @@
 import {
   Avatar,
   Box,
-  Chip,
+  Card,
   List,
   ListDivider,
   ListItem,
   ListItemButton,
-  ListItemDecorator,
+  Button,
   Typography,
 } from '@mui/joy';
 import * as React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 export default function Column(props) {
   return (
     <Box
@@ -25,9 +25,20 @@ export default function Column(props) {
         height: '100%',
       }}
     >
-      <Chip color={props.color} variant="solid">
+      <Card
+        color={props.color}
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <Typography level="title-lg">{props.title}</Typography>
-      </Chip>
+        <Button variant="plain" color={props.color}>
+          <AddCircleOutlineIcon />
+        </Button>
+      </Card>
       <Droppable droppableId={props.data.name} type="group">
         {provided => (
           <List
